@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA A30 GPU 技术分析报告</title>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .card {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .highlight {
+            background: linear-gradient(90deg, rgba(56,182,255,0.2) 0%, rgba(56,182,255,0) 100%);
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+        }
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .gpu-header {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- 页眉 -->
+        <div class="gpu-header rounded-xl p-6 mb-8 text-white">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold mb-2">NVIDIA A30 GPU 技术分析报告</h1>
+                    <p class="opacity-90">基于 nvidia-smi 命令输出的专业诊断</p>
+                </div>
+                <div class="mt-4 md:mt-0 bg-white/10 rounded-lg px-4 py-2">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-microchip text-blue-300"></i>
+                        <span class="font-medium">A30 计算卡</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 核心结论 -->
+        <div class="card bg-white rounded-xl p-6 mb-8">
+            <div class="flex items-center mb-4">
+                <div class="w-1 h-8 bg-blue-600 rounded-full mr-3"></div>
+                <h2 class="text-xl font-bold">核心结论</h2>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-green-100 p-2 rounded-full mr-3 mt-1">
+                        <i class="fas fa-check-circle text-green-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">GPU已正常识别</p>
+                        <p class="text-gray-600 text-sm">系统检测到一块 <span class="highlight">NVIDIA A30</span> 显卡，驱动（版本 <span class="highlight">550.144.03</span>）和 CUDA（版本 <span class="highlight">12.4</span>）均已正确安装。</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-blue-100 p-2 rounded-full mr-3 mt-1">
+                        <i class="fas fa-info-circle text-blue-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">当前状态</p>
+                        <p class="text-gray-600 text-sm">GPU处于 <span class="status-badge bg-gray-100 text-gray-800"><i class="fas fa-pause-circle mr-1 text-gray-500"></i>闲置状态</span>（温度 <span class="highlight">36°C</span>，利用率 <span class="highlight">0%</span>，显存仅占用 <span class="highlight">1MiB</span>），且 <span class="highlight">无活动进程占用显卡资源</span>。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关键信息解读 -->
+        <div class="card bg-white rounded-xl p-6 mb-8">
+            <div class="flex items-center mb-4">
+                <div class="w-1 h-8 bg-blue-600 rounded-full mr-3"></div>
+                <h2 class="text-xl font-bold">关键信息解读</h2>
+            </div>
+            
+            <!-- 顶部信息 -->
+            <div class="mb-6">
+                <h3 class="font-medium text-lg mb-3 flex items-center">
+                    <i class="fas fa-chevron-right text-blue-500 mr-2"></i>
+                    顶部信息
+                </h3>
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-gray-700 font-medium">时间戳</p>
+                            <p class="text-gray-600 text-sm"><span class="highlight">Sat May 10 02:14:42 2025</span></p>
+                            <p class="text-gray-500 text-xs mt-1">命令执行时间为 2025年5月10日凌晨2点14分</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 font-medium">驱动与CUDA版本</p>
+                            <div class="space-y-1">
+                                <p class="text-gray-600 text-sm"><span class="highlight">Driver Version: 550.144.03</span> → 驱动版本较新，支持主流计算任务</p>
+                                <p class="text-gray-600 text-sm"><span class="highlight">CUDA Version: 12.4</span> → 支持高性能GPU加速计算（如AI训练、深度学习）</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GPU参数表格 -->
+            <div class="mb-6">
+                <h3 class="font-medium text-lg mb-3 flex items-center">
+                    <i class="fas fa-chevron-right text-blue-500 mr-2"></i>
+                    GPU参数表格
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-2 px-4 text-left text-sm font-medium text-gray-700">参数</th>
+                                <th class="py-2 px-4 text-left text-sm font-medium text-gray-700">值</th>
+                                <th class="py-2 px-4 text-left text-sm font-medium text-gray-700">含义</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-3 px-4 text-sm font-medium text-gray-900">Temp</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">36°C</td>
+                                <td class="py-3 px-4 text-sm text-gray-600"><span class="text-green-600">温度正常</span>（A30工作温度通常低于80°C即安全）</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm font-medium text-gray-900">Pwr:Usage/Cap</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">33W / 165W</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">当前功耗仅为最大功耗的20%，符合闲置状态</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm font-medium text-gray-900">Memory-Usage</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">1MiB / 24576MiB</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">显存几乎未使用（总量24GB），无程序占用显存</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm font-medium text-gray-900">Volatile ECC</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">Disabled (黄色)</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">未启用ECC纠错功能（若需高可靠性计算可手动开启）</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4 text-sm font-medium text-gray-900">Compute M.</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">Default</td>
+                                <td class="py-3 px-4 text-sm text-gray-600">计算模式为默认，未限制GPU功能</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 进程信息 -->
+            <div>
+                <h3 class="font-medium text-lg mb-3 flex items-center">
+                    <i class="fas fa-chevron-right text-blue-500 mr-2"></i>
+                    进程信息
+                </h3>
+                <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-r-lg">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-exclamation-circle text-red-500 mt-1"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-red-700">
+                                <span class="font-medium">红色提示</span>：<span class="highlight">No running processes found</span>
+                            </p>
+                            <p class="text-sm text-red-600 mt-1">表示当前没有进程（如深度学习任务、图形渲染等）在使用GPU</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 潜在问题排查 -->
+        <div class="card bg-white rounded-xl p-6 mb-8">
+            <div class="flex items-center mb-4">
+                <div class="w-1 h-8 bg-blue-600 rounded-full mr-3"></div>
+                <h2 class="text-xl font-bold">潜在问题排查</h2>
+            </div>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="bg-yellow-100 p-2 rounded-full mr-3 mt-1">
+                        <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">若未显示GPU信息</p>
+                        <p class="text-gray-600 text-sm">需检查物理连接、驱动安装状态（参考 <code class="bg-gray-100 px-2 py-1 rounded text-sm">lspci | grep -i nvidia</code>）</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="bg-yellow-100 p-2 rounded-full mr-3 mt-1">
+                        <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">若显存占用高但无进程</p>
+                        <p class="text-gray-600 text-sm">可能是僵尸进程或驱动异常（尝试重启服务 <code class="bg-gray-100 px-2 py-1 rounded text-sm">nvidia-smi -pm 1</code> 或重启系统）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 下一步建议 -->
+        <div class="card bg-white rounded-xl p-6">
+            <div class="flex items-center mb-4">
+                <div class="w-1 h-8 bg-blue-600 rounded-full mr-3"></div>
+                <h2 class="text-xl font-bold">下一步建议</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-chart-line text-blue-600"></i>
+                        </div>
+                        <h3 class="font-medium">监控GPU负载</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">周期性运行 <code class="bg-blue-100 px-2 py-1 rounded text-sm">watch -n 1 nvidia-smi</code> 实时观察使用情况</p>
+                </div>
+                <div class="bg-purple-50 rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-cogs text-purple-600"></i>
+                        </div>
+                        <h3 class="font-medium">运行测试任务</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">通过 <code class="bg-purple-100 px-2 py-1 rounded text-sm">CUDA Sample</code> 或深度学习框架（如PyTorch）验证GPU计算功能</p>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4">
+                    <div class="flex items-center mb-2">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-bolt text-green-600"></i>
+                        </div>
+                        <h3 class="font-medium">启用持久化模式</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">执行 <code class="bg-green-100 px-2 py-1 rounded text-sm">nvidia-smi -pm 1</code> 提升GPU响应速度（需额外功耗）</p>
+                </div>
+            </div>
+            <div class="mt-6 bg-gray-50 rounded-lg p-4">
+                <p class="text-gray-700">通过此截图，可确认 <span class="font-medium">GPU已正确连接且驱动正常</span>，当前处于低负载闲置状态。如需深入性能分析或排查异常，可进一步结合日志或压力测试工具。</p>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="mt-12 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
+            <p>网页由问小白生成，仅供参考</p>
+            <p class="mt-1">最后更新时间为2025-05-10，星期六</p>
+            <p class="mt-1"><a href="https://wenxiaobai.com" class="text-blue-500 hover:text-blue-700">wenxiaobai.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
