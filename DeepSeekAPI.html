@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek与OpenAI API定价对比分析</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .highlight-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0ea5e9;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- 标题部分 -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">DeepSeek与OpenAI API定价对比</h1>
+            <p class="text-lg text-slate-600">2025年5月最新定价数据分析</p>
+        </div>
+
+        <!-- 主要对比表格 -->
+        <div class="bg-white rounded-xl card-shadow overflow-hidden mb-12">
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-slate-50">
+                        <tr class="border-b border-slate-200">
+                            <th class="px-6 py-4 text-left font-medium text-slate-700">模型</th>
+                            <th class="px-6 py-4 text-left font-medium text-slate-700">输入Token (100万)</th>
+                            <th class="px-6 py-4 text-left font-medium text-slate-700">输出Token (100万)</th>
+                            <th class="px-6 py-4 text-left font-medium text-slate-700">上下文长度</th>
+                            <th class="px-6 py-4 text-left font-medium text-slate-700">备注</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200">
+                        <!-- DeepSeek-R1 -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-blue-600">DeepSeek-R1</td>
+                            <td class="px-6 py-4">
+                                <div class="space-y-1">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                        <span>标准: <span class="font-semibold">$0.14</span> (缓存命中)</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-info-circle text-amber-500 mr-2"></i>
+                                        <span>非缓存: <span class="font-semibold">$0.55</span></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 font-semibold">$2.19</td>
+                            <td class="px-6 py-4">64K</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                非高峰时段75%折扣(UTC 16:30–00:30)，包含CoT推理Token
+                            </td>
+                        </tr>
+                        
+                        <!-- DeepSeek-V3 -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-blue-600">DeepSeek-V3</td>
+                            <td class="px-6 py-4">
+                                <div class="space-y-1">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                        <span>标准: <span class="font-semibold">$0.07</span> (缓存命中)</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-info-circle text-amber-500 mr-2"></i>
+                                        <span>非缓存: <span class="font-semibold">$0.27</span></span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 font-semibold">$1.10</td>
+                            <td class="px-6 py-4">64K</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                非高峰时段50%折扣(UTC 16:30–00:30)，优化通用任务
+                            </td>
+                        </tr>
+                        
+                        <!-- OpenAI o1 -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-purple-600">OpenAI o1</td>
+                            <td class="px-6 py-4 font-semibold">$15.00</td>
+                            <td class="px-6 py-4 font-semibold">$60.00</td>
+                            <td class="px-6 py-4">128K</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                无缓存折扣，高推理成本
+                            </td>
+                        </tr>
+                        
+                        <!-- OpenAI GPT-4o -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-purple-600">OpenAI GPT-4o</td>
+                            <td class="px-6 py-4 font-semibold">$5.00</td>
+                            <td class="px-6 py-4 font-semibold">$20.00</td>
+                            <td class="px-6 py-4">128K</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                多模态支持(文本、图像、音频)，替代旧版GPT-4
+                            </td>
+                        </tr>
+                        
+                        <!-- OpenAI GPT-4 Turbo -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-purple-600">OpenAI GPT-4 Turbo</td>
+                            <td class="px-6 py-4 font-semibold">$10.00</td>
+                            <td class="px-6 py-4 font-semibold">$30.00</td>
+                            <td class="px-6 py-4">128K</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                比GPT-4便宜3倍但速度较慢
+                            </td>
+                        </tr>
+                        
+                        <!-- OpenAI GPT-3.5 Turbo -->
+                        <tr class="hover:bg-slate-50">
+                            <td class="px-6 py-4 font-medium text-purple-600">OpenAI GPT-3.5 Turbo</td>
+                            <td class="px-6 py-4 font-semibold">$0.50</td>
+                            <td class="px-6 py-4 font-semibold">$1.50</td>
+                            <td class="px-6 py-4">16K</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">
+                                基础任务的经济选择
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 关键发现 -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center">
+                <i class="fas fa-lightbulb text-yellow-500 mr-3"></i>
+                <span>关键发现</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 成本效益 -->
+                <div class="bg-white rounded-xl card-shadow p-6 highlight-card">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-dollar-sign text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-1">成本效益</h3>
+                            <p class="text-slate-600">
+                                DeepSeek-R1比OpenAI o1便宜98%(输入Token)和96%(输出Token)。
+                                GPT-4o在多模态能力与成本间取得平衡，但仍比DeepSeek-R1贵5-10倍。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 非高峰折扣 -->
+                <div class="bg-white rounded-xl card-shadow p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-clock text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-1">非高峰折扣</h3>
+                            <p class="text-slate-600">
+                                DeepSeek在非高峰时段(UTC 16:30–00:30)提供50-75%折扣，缓存请求输入Token低至$0.035/百万。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Token效率 -->
+                <div class="bg-white rounded-xl card-shadow p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-brain text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-1">Token效率</h3>
+                            <p class="text-slate-600">
+                                DeepSeek-R1包含Chain-of-Thought推理Token，而OpenAI对复杂推理任务单独收费。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 上下文限制 -->
+                <div class="bg-white rounded-xl card-shadow p-6">
+                    <div class="flex items-start mb-4">
+                        <div class="bg-amber-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-expand text-amber-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-800 mb-1">上下文限制</h3>
+                            <p class="text-slate-600">
+                                OpenAI模型(128K)支持更长上下文，但DeepSeek的GRPO架构以更低成本实现可比性能。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 价格计算器提示 -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-6 mb-12">
+            <div class="flex items-start">
+                <div class="bg-blue-100 p-3 rounded-full mr-4">
+                    <i class="fas fa-calculator text-blue-600 text-xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-slate-800 mb-2">实时价格计算</h3>
+                    <p class="text-slate-700 mb-3">
+                        使用<a href="https://livechatai.com/deepseek-v3-pricing-calculator" class="text-blue-600 hover:underline font-medium" target="_blank">DeepSeek-V3价格计算器</a>估算项目具体成本。价格可能因地区和用量而异。
+                    </p>
+                    <a href="https://livechatai.com/deepseek-v3-pricing-calculator" target="_blank" class="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-2"></i>
+                        访问计算器
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="text-center text-sm text-slate-500 pt-6 border-t border-slate-200">
+            <p>网页由问小白生成，仅供参考</p>
+            <p class="mt-1">最后更新时间为2025-05-10 ，星期六</p>
+            <p class="mt-1">问小白网址：<a href="https://wenxiaobai.com" class="text-blue-500 hover:underline" target="_blank">wenxiaobai.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
