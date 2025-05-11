@@ -41,19 +41,7 @@
 <body>
     <h1>📚 Knowledge Base</h1>
     
-    <!-- EXAMPLE ENTRY - REPLACE WITH YOUR FILES -->
-    <div class="card">
-        <div class="badge">Guide</div>
-        <h2><a href="getting-started.html">Getting Started</a></h2>
-        <p>Step-by-step guide to setting up your development environment and initial project configuration</p>
-    </div>
-
-    <!-- ANOTHER EXAMPLE -->
-    <div class="card">
-        <div class="badge">Reference</div>
-        <h2><a href="api-reference.md">API Documentation</a></h2>
-        <p>Complete reference for all available endpoints, parameters, and response formats</p>
-    </div>
+    
 
     <div class="card">
         <div class="badge">API Analysis</div>
@@ -64,6 +52,98 @@
             <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">DeepSeek-R1便宜98%</span>
             <span class="inline-block bg-green-100 px-2 py-1 rounded mr-2">非高峰75%折扣</span>
             <span class="inline-block bg-purple-100 px-2 py-1 rounded">包含CoT推理Token</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">AI Reasoning</div>
+        <h2><a href="deepseekreasoner.html">DeepSeek Reasoner 专业推理模型</a></h2>
+        <p>面向复杂决策场景的AI推理引擎，支持金融分析、代码生成、数学求解及多步骤逻辑推理</p>
+        <div class="mt-2 text-sm text-gray-600">
+            <span class="mr-3">🌟 核心特性：</span>
+            <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">Chain of Thought增强</span>
+            <span class="inline-block bg-purple-100 px-2 py-1 rounded mr-2">多跳推理能力</span>
+            <span class="inline-block bg-green-100 px-2 py-1 rounded">低训练成本($6M)</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">DevOps Guide</div>
+        <h2><a href="dockercommand.html">需求预测系统 Docker 操作指南</a></h2>
+        <p>完整容器化部署流程，涵盖数据预处理、模型训练、推理预测及错误分析全生命周期管理</p>
+        <div class="mt-2 text-sm text-gray-600">
+            <span class="mr-3">🔧 核心操作：</span>
+            <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">镜像加载</span>
+            <span class="inline-block bg-green-100 px-2 py-1 rounded mr-2">模型训练</span>
+            <span class="inline-block bg-purple-100 px-2 py-1 rounded">SHAP分析</span>
+        </div>
+        <div class="mt-2 text-xs text-red-600">
+            <i class="fas fa-exclamation-triangle mr-1"></i>
+            注意：需预先设置环境变量 ${TIMESTAMP} 和 ${CONF_DIR}
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">API Integration</div>
+        <h2><a href="documentsearchrequest.html">MyInvois 文档搜索API集成</a></h2>
+        <p>C#实现的税务文档搜索接口，支持复杂查询、分页及多种文档类型过滤</p>
+        <div class="mt-2 text-sm text-gray-600">
+            <span class="mr-3">⚙️ 核心特性：</span>
+            <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">输入验证</span>
+            <span class="inline-block bg-green-100 px-2 py-1 rounded mr-2">枚举转换</span>
+            <span class="inline-block bg-purple-100 px-2 py-1 rounded">分页支持</span>
+        </div>
+        <div class="mt-2 text-xs text-blue-600">
+            <i class="fas fa-exclamation-circle mr-1"></i>
+            包含文档状态管理（有效/作废/已取消）和发票方向过滤
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">Hosting Guide</div>
+        <h2><a href="freehostinghtmlsite.html">2025免费网站托管平台对比</a></h2>
+        <p>六大主流平台(GitHub Pages/Netlify/Vercel等)功能特性、限制条件及适用场景分析</p>
+        <div class="mt-2 text-sm text-gray-600">
+            <span class="mr-3">🚀 核心功能：</span>
+            <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">CDN支持</span>
+            <span class="inline-block bg-green-100 px-2 py-1 rounded mr-2">Git集成</span>
+            <span class="inline-block bg-purple-100 px-2 py-1 rounded">免费SSL</span>
+        </div>
+        <div class="mt-2 text-xs text-blue-600">
+            <i class="fas fa-lightbulb mr-1"></i>
+            包含开发者友好型平台选择建议与企业级方案推荐
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">GPU Diagnostics</div>
+        <h2><a href="gpu.html">NVIDIA A30 GPU 技术状态分析</a></h2>
+        <p>基于nvidia-smi输出的深度诊断报告，包含温度、显存使用及驱动状态检测</p>
+        <div class="mt-2 text-sm text-gray-600">
+            <span class="mr-3">🔍 关键指标：</span>
+            <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">驱动 550.144.03</span>
+            <span class="inline-block bg-green-100 px-2 py-1 rounded mr-2">CUDA 12.4</span>
+            <span class="inline-block bg-gray-100 px-2 py-1 rounded">温度 36°C</span>
+        </div>
+        <div class="mt-2 text-xs text-purple-600">
+            <i class="fas fa-info-circle mr-1"></i>
+            当前处于闲置状态（0%利用率），ECC纠错功能未启用
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="badge">Hardware Guide</div>
+        <h2><a href="pcspecs.html">PC运行LLM模型能力对比</a></h2>
+        <p>本地大语言模型部署硬件配置分析，涵盖从旗舰级到低端PC的LLM支持能力评估</p>
+        <div class="mt-2 text-sm text-gray-600">
+            <span class="mr-3">💻 核心型号：</span>
+            <span class="inline-block bg-blue-100 px-2 py-1 rounded mr-2">双Tesla V100</span>
+            <span class="inline-block bg-green-100 px-2 py-1 rounded mr-2">RTX3060*2</span>
+            <span class="inline-block bg-red-100 px-2 py-1 rounded">赛扬G530</span>
+        </div>
+        <div class="mt-2 text-xs text-purple-600">
+            <i class="fas fa-exclamation-triangle mr-1"></i>
+            PC9（低端配置）无法运行任何LLM模型
         </div>
     </div>
 </body>
