@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor编程模型选择指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .highlight-card {
+            border-left: 4px solid #3b82f6;
+        }
+        .model-badge {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- 标题区 -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Cursor编程模型选择指南</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">基于性能、适用场景和硬件需求的综合评估</p>
+        </div>
+
+        <!-- 核心模型推荐 -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">🏆 优先推荐模型</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- 模型1 -->
+                <div class="bg-white rounded-xl p-6 card-shadow highlight-card">
+                    <div class="flex items-center mb-4">
+                        <span class="model-badge text-white text-sm font-bold px-3 py-1 rounded-full mr-3">1</span>
+                        <h3 class="text-xl font-bold">DeepSeek-V3-250324</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-bolt text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">代码生成能力超越GPT-4.5</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-language text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">支持多语言(Python/Java/C++等)</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-wifi text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">联网搜索增强</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 font-medium">适用场景</p>
+                        <p class="text-gray-700">复杂算法生成、跨语言转换、前端开发优化</p>
+                    </div>
+                </div>
+
+                <!-- 模型2 -->
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <span class="model-badge text-white text-sm font-bold px-3 py-1 rounded-full mr-3">2</span>
+                        <h3 class="text-xl font-bold">THUDM/glm-4-9b-chat</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-brain text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">智谱AI出品，代码生成优化</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-server text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">参数量9B，轻量级本地部署</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 font-medium">适用场景</p>
+                        <p class="text-gray-700">中小型项目代码生成、本地化开发调试</p>
+                    </div>
+                </div>
+
+                <!-- 模型3 -->
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <div class="flex items-center mb-4">
+                        <span class="model-badge text-white text-sm font-bold px-3 py-1 rounded-full mr-3">3</span>
+                        <h3 class="text-xl font-bold">Qwen/Qwen3-8B</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <i class="fas fa-balance-scale text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">代码理解与生成能力均衡</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-file-alt text-blue-500 mt-1 mr-2"></i>
+                            <p class="text-gray-700">支持中文文档融合</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <p class="text-sm text-gray-500 font-medium">适用场景</p>
+                        <p class="text-gray-700">中文开发者协作、API接口开发、快速原型设计</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 完整模型对比表 -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">📊 完整模型对比</h2>
+            <div class="bg-white rounded-xl overflow-hidden card-shadow">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">排名</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">模型名称</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">核心优势</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">适用场景</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">备注</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">1</td>
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-blue-600">DeepSeek-V3-250324</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>代码生成能力超越GPT-4.5</li>
+                                        <li>支持多语言(Python/Java/C++等)</li>
+                                        <li>联网搜索增强</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">复杂算法生成、跨语言转换、前端开发优化</td>
+                                <td class="px-6 py-4 text-gray-500">最新版本，需较高硬件配置(如Mac Studio或云端部署)</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">2</td>
+                                <td class="px-6 py-4 whitespace-nowrap">THUDM/glm-4-9b-chat</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>智谱AI出品，代码生成优化</li>
+                                        <li>参数量9B，轻量级本地部署</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">中小型项目代码生成、本地化开发调试</td>
+                                <td class="px-6 py-4 text-gray-500">开源模型，适合对隐私敏感的场景；代码逻辑完整性略逊于DeepSeek</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">3</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Qwen/Qwen3-8B</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>代码理解与生成能力均衡</li>
+                                        <li>支持中文文档融合</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">中文开发者协作、API接口开发、快速原型设计</td>
+                                <td class="px-6 py-4 text-gray-500">通义实验室生态集成友好；8B参数适合中等算力设备</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">4</td>
+                                <td class="px-6 py-4 whitespace-nowrap">DeepSeek-R1</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>推理能力稳定</li>
+                                        <li>支持1.5B-70B参数全系列适配</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">企业级代码测试、大规模并发任务</td>
+                                <td class="px-6 py-4 text-gray-500">部署灵活，但轻量版本(如蒸馏版)需验证代码生成质量</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">5</td>
+                                <td class="px-6 py-4 whitespace-nowrap">DeepSeek-Reasoner</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>思维链(CoT)输出，逻辑透明</li>
+                                        <li>支持64K长上下文</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">算法教学、代码审计、多步骤逻辑分析</td>
+                                <td class="px-6 py-4 text-gray-500">侧重推理过程而非直接生成，适合需要解释的场景</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">6</td>
+                                <td class="px-6 py-4 whitespace-nowrap">DeepSeek-V3</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>混合专家(MoE)架构，高并发效率</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">分布式训练、科研级项目</td>
+                                <td class="px-6 py-4 text-gray-500">训练成本低，但生成速度可能略慢于V3-250324</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">7</td>
+                                <td class="px-6 py-4 whitespace-nowrap">DeepSeek-Chat</td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>通用对话能力，基础代码生成</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">快速问答、文档生成、轻量级脚本编写</td>
+                                <td class="px-6 py-4 text-gray-500">代码复杂度处理能力有限，适合作为辅助工具</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 选择建议 -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-2">💡 选择建议</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <h3 class="text-xl font-bold mb-4 text-blue-600">优先选择</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <p><span class="font-medium">DeepSeek-V3-250324</span> - 追求前沿性能且硬件充足</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <p><span class="font-medium">THUDM/glm-4-9b-chat</span> - 本地部署+代码生成平衡</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-blue-100 text-blue-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                            <p><span class="font-medium">Qwen3-8B</span> - 中文生态友好+轻量级高效开发</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow">
+                    <h3 class="text-xl font-bold mb-4 text-gray-700">次选补充</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="bg-gray-100 text-gray-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <p><span class="font-medium">DeepSeek-R1</span> - 企业级稳定场景</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-gray-100 text-gray-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <p><span class="font-medium">DeepSeek-Reasoner</span> - 需逻辑透明的复杂任务</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注意事项 -->
+        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg mb-16">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-exclamation-circle text-yellow-500 text-xl"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-lg font-bold text-yellow-800">注意事项</h3>
+                    <div class="mt-2 text-yellow-700">
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>本地部署需关注显存要求(如GLM-4-9B需至少16GB GPU，Qwen3-8B需12GB以上)</li>
+                            <li>第三方平台(如硅基流动、魔搭)可规避官方服务限制，提升稳定性</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 总结 -->
+        <div class="bg-white rounded-xl p-8 card-shadow text-center">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">如何选择最适合的编程模型？</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-6">根据硬件条件、项目复杂度和生态依赖灵活选择模型，平衡性能需求与资源限制</p>
+            <div class="grid md:grid-cols-3 gap-4 max-w-3xl mx-auto">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <i class="fas fa-microchip text-blue-500 text-2xl mb-2"></i>
+                    <h4 class="font-bold text-blue-800">硬件配置</h4>
+                    <p class="text-sm text-gray-600">评估GPU显存和计算能力</p>
+                </div>
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <i class="fas fa-project-diagram text-purple-500 text-2xl mb-2"></i>
+                    <h4 class="font-bold text-purple-800">项目复杂度</h4>
+                    <p class="text-sm text-gray-600">简单脚本或复杂系统开发</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <i class="fas fa-users text-green-500 text-2xl mb-2"></i>
+                    <h4 class="font-bold text-green-800">团队协作</h4>
+                    <p class="text-sm text-gray-600">中文支持与文档需求</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="mt-16 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+            <p>网页由问小白生成，仅供参考</p>
+            <p class="mt-1">最后更新时间为2025-05-11，星期日</p>
+            <p class="mt-1">问小白网址：wenxiaobai.com</p>
+        </div>
+    </div>
+</body>
+</html>
