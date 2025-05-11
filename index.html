@@ -2,70 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Knowledge Base Index</title>
+    <title>Knowledge Base</title>
     <style>
-        /* ... existing base styles ... */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #ecf0f1;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
         .card {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            margin: 1rem 0;
+            background: white;
             border-radius: 8px;
-            transition: box-shadow 0.3s;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 1px solid #eee;
         }
-        .card:hover {
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .card h2 {
+            margin-top: 0;
+            color: var(--primary);
         }
-        .summary {
+        .card p {
             color: #666;
-            margin-top: 0.5rem;
+            line-height: 1.6;
+        }
+        .badge {
+            background: var(--secondary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <h1>Knowledge Base</h1>
-    <div id="content-list"></div>
+    <h1>📚 Knowledge Base</h1>
+    
+    <!-- EXAMPLE ENTRY - REPLACE WITH YOUR FILES -->
+    <div class="card">
+        <div class="badge">Guide</div>
+        <h2><a href="getting-started.html">Getting Started</a></h2>
+        <p>Step-by-step guide to setting up your development environment and initial project configuration</p>
+    </div>
 
-    <script>
-        // ... existing script setup ...
-        async function loadFiles() {
-            try {
-                const response = await fetch(window.location.href);
-                const text = await response.text();
-                const parser = new DOMParser();
-                const html = parser.parseFromString(text, 'text/html');
-                
-                // Get all links from server directory listing
-                const links = [...html.querySelectorAll('a')]
-                    .map(a => a.href)
-                    .filter(href => href.includes('://') ? 
-                        new URL(href).pathname.endsWith('.html') || new URL(href).pathname.endsWith('.md') :
-                        href.endsWith('.html') || href.endsWith('.md'))
-                    .filter(f => !f.includes('index.html'));
-
-                for (const file of links) {
-                    const fileResponse = await fetch(file);
-                    const content = await fileResponse.text();
-                    const title = content.match(/<title>(.*?)<\/title>/i)?.[1] || 
-                                content.match(/# (.*?)(\n|$)/i)?.[1] || 
-                                file;
-                    const summary = content.match(/<meta name="description" content="(.*?)">/i)?.[1] ||
-                                 content.match(/(?:#.*?\n)(.*?)(?:\n#|$)/is)?.[1]?.substring(0, 150) + '...' ||
-                                 'No summary available';
-
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <h3><a href="${file}">${title}</a></h3>
-                        <div class="summary">${summary}</div>
-                    `;
-                    document.getElementById('content-list').appendChild(card);
-                }
-            } catch (error) {
-                console.error('Error loading files:', error);
-            }
-        }
-
-        window.onload = loadFiles;
-    </script>
+    <!-- ANOTHER EXAMPLE -->
+    <div class="card">
+        <div class="badge">Reference</div>
+        <h2><a href="api-reference.md">API Documentation</a></h2>
+        <p>Complete reference for all available endpoints, parameters, and response formats</p>
+    </div>
 </body>
 </html> 
