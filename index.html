@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knowledge Base Index</title>
+    <style>
+        /* ... existing base styles ... */
+        .card {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            transition: box-shadow 0.3s;
+        }
+        .card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .summary {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Knowledge Base</h1>
+    <div id="content-list"></div>
+
+    <script>
+        // ... existing script setup ...
+        async function loadFiles() {
+            try {
+                const response = await fetch('./'); // Get directory listing
+                const text = await response.text();
+                const parser = new DOMParser();
+                const html = parser.parseFromString(text, 'text/html');
+                const links = [...html.querySelectorAll('a')]
+                    .map(a => a.href.split('/').pop())
+                    .filter(f => f !== 'index.html' && (f.endsWith('.html') || f.endsWith('.md')));
+
+                for (const file of links) {
+                    const fileResponse = await fetch(file);
+                    const content = await fileResponse.text();
+                    const title = content.match(/<title>(.*?)<\/title>/i)?.[1] || 
+                                content.match(/# (.*?)(\n|$)/i)?.[1] || 
+                                file;
+                    const summary = content.match(/<meta name="description" content="(.*?)">/i)?.[1] ||
+                                 content.match(/(?:#.*?\n)(.*?)(?:\n#|$)/is)?.[1]?.substring(0, 150) + '...' ||
+                                 'No summary available';
+
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h3><a href="${file}">${title}</a></h3>
+                        <div class="summary">${summary}</div>
+                    `;
+                    document.getElementById('content-list').appendChild(card);
+                }
+            } catch (error) {
+                console.error('Error loading files:', error);
+            }
+        }
+
+        window.onload = loadFiles;
+    </script>
+</body>
+</html> 
