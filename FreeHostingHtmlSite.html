@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年主流免费HTML网站托管平台对比</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- 标题部分 -->
+        <div class="text-center mb-16">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">2025年主流免费HTML网站托管平台</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">精选6大平台特点对比与选择建议</p>
+            <div class="mt-8 w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+        </div>
+
+        <!-- 平台卡片部分 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <!-- GitHub Pages -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="p-6">
+                    <div class="platform-icon bg-gray-800 text-white">
+                        <i class="fab fa-github text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">GitHub Pages</h2>
+                    <p class="text-gray-600 mb-4">与GitHub仓库深度集成，支持Jekyll静态生成</p>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> 核心优势
+                        </h3>
+                        <ul class="text-gray-600 space-y-1 pl-5">
+                            <li>• 完全免费，无广告</li>
+                            <li>• 可通过 <code class="bg-gray-100 px-1 rounded">&lt;username&gt;.github.io</code> 访问</li>
+                            <li>• 支持自定义域名（需手动配置CNAME）</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i> 限制条件
+                        </h3>
+                        <p class="text-gray-600">单个仓库容量限制1GB，带宽100GB/月</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-3">
+                        <h3 class="font-semibold text-blue-700 mb-1">适用场景</h3>
+                        <p class="text-blue-600">技术文档、开源项目主页、个人简历</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Netlify -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="p-6">
+                    <div class="platform-icon bg-green-600 text-white">
+                        <i class="fas fa-cloud-upload-alt text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Netlify</h2>
+                    <p class="text-gray-600 mb-4">拖拽式部署/Git集成，支持无服务器函数</p>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> 核心优势
+                        </h3>
+                        <ul class="text-gray-600 space-y-1 pl-5">
+                            <li>• 每月100GB带宽，免费SSL证书</li>
+                            <li>• 自动化构建、全球CDN加速</li>
+                            <li>• 支持表单处理与预览环境</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i> 部署方式
+                        </h3>
+                        <p class="text-gray-600">上传ZIP文件或连接Git仓库自动部署</p>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-3">
+                        <h3 class="font-semibold text-blue-700 mb-1">适用场景</h3>
+                        <p class="text-blue-600">JAMstack架构网站、企业展示页</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vercel -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="p-6">
+                    <div class="platform-icon bg-black text-white">
+                        <i class="fas fa-bolt text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Vercel</h2>
+                    <p class="text-gray-600 mb-4">开发者友好，专注前端框架（Next.js/React）</p>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> 核心优势
+                        </h3>
+                        <ul class="text-gray-600 space-y-1 pl-5">
+                            <li>• 每月100万次请求，边缘网络加速</li>
+                            <li>• 内置Serverless Functions和数据库支持</li>
+                            <li>• 支持实时协作和预览部署</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i> 典型应用
+                        </h3>
+                        <p class="text-gray-600">技术演示站点、React/Vue单页应用</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Firebase Hosting -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="p-6">
+                    <div class="platform-icon bg-orange-500 text-white">
+                        <i class="fas fa-fire text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Firebase Hosting</h2>
+                    <p class="text-gray-600 mb-4">Google生态整合，支持动态内容</p>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> 核心优势
+                        </h3>
+                        <ul class="text-gray-600 space-y-1 pl-5">
+                            <li>• 与Firestore数据库无缝集成</li>
+                            <li>• 全球CDN和自动SSL配置</li>
+                            <li>• 免费带宽10GB/月（超出后按需计费）</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-3">
+                        <h3 class="font-semibold text-blue-700 mb-1">适合项目</h3>
+                        <p class="text-blue-600">渐进式Web应用（PWA）、含API调用的动态站点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloudflare Pages -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="p-6">
+                    <div class="platform-icon bg-orange-400 text-white">
+                        <i class="fas fa-shield-alt text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Cloudflare Pages</h2>
+                    <p class="text-gray-600 mb-4">全球分布式CDN网络</p>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> 亮点功能
+                        </h3>
+                        <ul class="text-gray-600 space-y-1 pl-5">
+                            <li>• 不限站点数和请求量</li>
+                            <li>• 支持Git仓库自动部署和DDoS防护</li>
+                            <li>• 内置Web Analytics分析工具</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i> 限制条件
+                        </h3>
+                        <p class="text-gray-600">每月构建次数限制500次</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surge -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden card-hover">
+                <div class="p-6">
+                    <div class="platform-icon bg-purple-600 text-white">
+                        <i class="fas fa-rocket text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">Surge</h2>
+                    <p class="text-gray-600 mb-4">极简命令行工具部署</p>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> 核心优势
+                        </h3>
+                        <ul class="text-gray-600 space-y-1 pl-5">
+                            <li>• 30秒完成部署，支持自定义域名</li>
+                            <li>• 无广告，适合临时测试</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h3 class="font-semibold text-gray-700 mb-2 flex items-center">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i> 限制条件
+                        </h3>
+                        <p class="text-gray-600">免费版无SSL证书（需付费解锁）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 选择建议部分 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden mb-16">
+            <div class="p-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">平台选择建议</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 rounded-lg p-5">
+                        <h3 class="font-semibold text-blue-700 mb-3 flex items-center">
+                            <i class="fas fa-code mr-2"></i> 开发者优先
+                        </h3>
+                        <p class="text-blue-600">
+                            <span class="font-medium">GitHub Pages</span> - 代码管理一体化<br>
+                            <span class="font-medium">Vercel</span> - 框架友好
+                        </p>
+                    </div>
+                    
+                    <div class="bg-green-50 rounded-lg p-5">
+                        <h3 class="font-semibold text-green-700 mb-3 flex items-center">
+                            <i class="fas fa-building mr-2"></i> 企业展示
+                        </h3>
+                        <p class="text-green-600">
+                            <span class="font-medium">Netlify</span> - 自动化部署+扩展性强
+                        </p>
+                    </div>
+                    
+                    <div class="bg-orange-50 rounded-lg p-5">
+                        <h3 class="font-semibold text-orange-700 mb-3 flex items-center">
+                            <i class="fas fa-cogs mr-2"></i> 动态功能需求
+                        </h3>
+                        <p class="text-orange-600">
+                            <span class="font-medium">Firebase</span> - 数据库整合
+                        </p>
+                    </div>
+                    
+                    <div class="bg-purple-50 rounded-lg p-5">
+                        <h3 class="font-semibold text-purple-700 mb-3 flex items-center">
+                            <i class="fas fa-globe-asia mr-2"></i> 国内访问优化
+                        </h3>
+                        <p class="text-purple-600">
+                            <span class="font-medium">Gitee Pages</span> - 需实名认证
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-8 bg-gray-50 rounded-lg p-5">
+                    <h3 class="font-semibold text-gray-700 mb-3 flex items-center">
+                        <i class="fas fa-lightbulb mr-2"></i> 通用建议
+                    </h3>
+                    <p class="text-gray-600">
+                        所有平台均支持HTML/CSS/JS基础托管，部分平台如Vercel和Netlify还支持<b>自定义域名+HTTPS</b>的免费方案。建议优先选择支持Git集成的平台以实现持续部署。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="text-center text-gray-500 text-sm">
+            <p>网页由问小白生成，仅供参考</p>
+            <p class="mt-1">最后更新时间为2025-05-11 ，星期日</p>
+            <p class="mt-1">问小白网址：<a href="https://wenxiaobai.com" class="text-blue-500 hover:text-blue-600">wenxiaobai.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 卡片悬停效果增强
+        const cards = document.querySelectorAll('.card-hover');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
