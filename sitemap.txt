@@ -1,0 +1,93 @@
+# MyInvois SDK Website Sitemap
+# Base URL: https://sdk.myinvois.hasil.gov.my
+
+# Main Pages
+https://sdk.myinvois.hasil.gov.my/
+https://sdk.myinvois.hasil.gov.my/start/
+https://sdk.myinvois.hasil.gov.my/release-notes/
+https://sdk.myinvois.hasil.gov.my/contacts/
+
+# Platform API Documentation
+https://sdk.myinvois.hasil.gov.my/api/
+https://sdk.myinvois.hasil.gov.my/api/07-login-as-taxpayer-system/
+https://sdk.myinvois.hasil.gov.my/api/08-login-as-intermediary-system/
+https://sdk.myinvois.hasil.gov.my/api/03-get-document-types/
+https://sdk.myinvois.hasil.gov.my/api/04-get-document-type/
+https://sdk.myinvois.hasil.gov.my/api/05-get-document-type-version/
+https://sdk.myinvois.hasil.gov.my/api/06-get-notifications/
+
+# e-Invoice API Documentation
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/01-validate-taxpayer-tin/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/02-submit-documents/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/03-cancel-document/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/04-reject-document/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/05-get-recent-documents/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/06-get-submission/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/07-get-document/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/08-get-document-details/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/09-search-documents/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/10-search-taxpayer-tin/
+https://sdk.myinvois.hasil.gov.my/einvoicingapi/11-qr-code/
+
+# Reference Documentation
+https://sdk.myinvois.hasil.gov.my/types/
+https://sdk.myinvois.hasil.gov.my/codes/
+https://sdk.myinvois.hasil.gov.my/codes/tax-types/
+https://sdk.myinvois.hasil.gov.my/document-validation-rules/
+https://sdk.myinvois.hasil.gov.my/standard-error-response/
+https://sdk.myinvois.hasil.gov.my/standard-header-parameters/
+
+# Code Tables
+https://sdk.myinvois.hasil.gov.my/codes/classification-codes/
+https://sdk.myinvois.hasil.gov.my/codes/countries/
+https://sdk.myinvois.hasil.gov.my/codes/currencies/
+https://sdk.myinvois.hasil.gov.my/codes/e-invoice-types/
+https://sdk.myinvois.hasil.gov.my/codes/msic-codes/
+https://sdk.myinvois.hasil.gov.my/codes/payment-methods/
+https://sdk.myinvois.hasil.gov.my/codes/state-codes/
+https://sdk.myinvois.hasil.gov.my/codes/tax-types/
+https://sdk.myinvois.hasil.gov.my/codes/unit-types/
+
+# Document Types
+https://sdk.myinvois.hasil.gov.my/documents/invoice-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/invoice-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/credit-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/credit-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/debit-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/debit-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/refund-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/refund-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-invoice-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-invoice-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-credit-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-credit-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-debit-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-debit-v1-1/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-refund-v1-0/
+https://sdk.myinvois.hasil.gov.my/documents/self-billed-refund-v1-1/
+
+# FAQ and Help
+https://sdk.myinvois.hasil.gov.my/faq/
+https://sdk.myinvois.hasil.gov.my/signature/
+https://sdk.myinvois.hasil.gov.my/postman/
+https://sdk.myinvois.hasil.gov.my/integration-practices/
+https://sdk.myinvois.hasil.gov.my/sample/
+
+# Sample Files
+https://sdk.myinvois.hasil.gov.my/files/one-doc-signed.xml
+https://sdk.myinvois.hasil.gov.my/files/sample-ul-invoice-2.1-signed.min.json
+
+# External Links
+https://www.hasil.gov.my/en/
+https://mytax.hasil.gov.my/
+https://www.mcmc.gov.my/en/sectors/digital-signature/list-of-licensees
+
+# Environment URLs
+# Production
+https://myinvois.hasil.gov.my
+https://api.myinvois.hasil.gov.my
+
+# Sandbox
+https://preprod.myinvois.hasil.gov.my
+https://preprod-api.myinvois.hasil.gov.my 
