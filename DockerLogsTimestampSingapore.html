@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker日志命令解决方案 | 新加坡时区</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .code-block {
+            font-family: 'SF Mono', 'Roboto Mono', monospace;
+            background-color: #1e293b;
+            color: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            right: 0.75rem;
+            top: 0.75rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #f8fafc;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.2s ease;
+        }
+        .copy-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-3">Docker日志命令解决方案</h1>
+            <p class="text-lg text-slate-600">新加坡时区时间戳命名日志文件</p>
+            <div class="mt-4">
+                <span class="inline-block bg-blue-100 text-blue-800 text-sm px-3 py-1 rounded-full">
+                    <i class="fas fa-terminal mr-1"></i> 命令行工具
+                </span>
+                <span class="inline-block bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full ml-2">
+                    <i class="fas fa-clock mr-1"></i> 时区处理
+                </span>
+            </div>
+        </div>
+
+        <!-- Final Command Card -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="bg-blue-600 px-6 py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle text-white text-xl mr-3"></i>
+                    <h2 class="text-xl font-semibold text-white">最终命令</h2>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="code-block mb-4">
+                    <button class="copy-btn" onclick="copyToClipboard(this, 'final-command')">
+                        <i class="far fa-copy mr-1"></i> 复制
+                    </button>
+                    <code id="final-command" class="block overflow-x-auto">docker logs ss-inference &> "ss-inference-$(TZ='Asia/Singapore' date +'%Y%m%d-%H%M%S').log"</code>
+                </div>
+                <p class="text-slate-700">此命令会将 <code class="bg-slate-100 px-1.5 py-0.5 rounded">ss-inference</code> 容器的日志输出到以新加坡当前时间命名的文件中。</p>
+            </div>
+        </div>
+
+        <!-- Explanation Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Left Column -->
+            <div class="card bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-xl font-semibold text-slate-800 mb-4 flex items-center">
+                    <i class="fas fa-search text-blue-500 mr-3"></i> 命令解析
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-medium text-slate-800">1. <code>docker logs ss-inference</code></h3>
+                        <p class="text-slate-600 mt-1">从名为 <code>ss-inference</code> 的容器中获取日志。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-800">2. <code>&></code></h3>
+                        <p class="text-slate-600 mt-1">将标准输出(stdout)和标准错误(stderr)都重定向到指定文件。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-800">3. <code>$(...)</code></h3>
+                        <p class="text-slate-600 mt-1">命令替换，执行子命令(<code>date</code>)并将其输出直接插入文件名中。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="card bg-white rounded-xl shadow-md p-6">
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-medium text-slate-800">4. <code>TZ='Asia/Singapore'</code></h3>
+                        <p class="text-slate-600 mt-1">为 <code>date</code> 命令设置时区为新加坡时间(SGT, UTC+8)。这不会影响系统全局时区。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-800">5. <code>date +'%Y%m%d-%H%M%S'</code></h3>
+                        <p class="text-slate-600 mt-1">格式化当前时间：<br>
+                        <code>%Y</code>: 4位年份<br>
+                        <code>%m</code>: 2位月份<br>
+                        <code>%d</code>: 2位日期<br>
+                        <code>%H</code>: 2位小时(24小时制)<br>
+                        <code>%M</code>: 2位分钟<br>
+                        <code>%S</code>: 2位秒</p>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-slate-800">6. 最终文件名</h3>
+                        <p class="text-slate-600 mt-1">示例: <code>ss-inference-20250405-143045.log</code><br>
+                        确保文件名唯一、可排序且兼容大多数系统。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="bg-amber-600 px-6 py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-info-circle text-white text-xl mr-3"></i>
+                    <h2 class="text-xl font-semibold text-white">注意事项</h2>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-slate-800 mb-2 flex items-center">
+                            <i class="fas fa-globe-asia text-amber-500 mr-2"></i> 时区准确性
+                        </h3>
+                        <p class="text-slate-700"><code>Asia/Singapore</code> 是新加坡的IANA时区标识符。新加坡不实行夏令时，因此无需调整。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-800 mb-2 flex items-center">
+                            <i class="fas fa-file-alt text-amber-500 mr-2"></i> 文件名安全性
+                        </h3>
+                        <p class="text-slate-700">该格式避免了空格和特殊字符，确保在大多数shell和文件系统中的兼容性。</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-slate-800 mb-2 flex items-center">
+                            <i class="fas fa-redo text-amber-500 mr-2"></i> 可重用性
+                        </h3>
+                        <p class="text-slate-700">此命令适合一次性使用或包含在脚本中。如需频繁使用，建议将其封装为脚本或别名。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional Section -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden mb-8">
+            <div class="bg-purple-600 px-6 py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-cogs text-white text-xl mr-3"></i>
+                    <h2 class="text-xl font-semibold text-white">可选方案</h2>
+                </div>
+            </div>
+            <div class="p-6">
+                <h3 class="font-semibold text-slate-800 mb-3">保存日志到特定目录</h3>
+                <p class="text-slate-700 mb-4">如需将日志保存到特定目录(如 <code>logs/</code>)，可修改命令如下：</p>
+                
+                <div class="code-block mb-4">
+                    <button class="copy-btn" onclick="copyToClipboard(this, 'optional-command')">
+                        <i class="far fa-copy mr-1"></i> 复制
+                    </button>
+                    <code id="optional-command" class="block overflow-x-auto">docker logs ss-inference &> "logs/ss-inference-$(TZ='Asia/Singapore' date +'%Y%m%d-%H%M%S').log"</code>
+                </div>
+                
+                <p class="text-slate-700">确保 <code>logs/</code> 目录存在，或先创建它：</p>
+                
+                <div class="code-block mt-4">
+                    <button class="copy-btn" onclick="copyToClipboard(this, 'mkdir-command')">
+                        <i class="far fa-copy mr-1"></i> 复制
+                    </button>
+                    <code id="mkdir-command" class="block overflow-x-auto">mkdir -p logs</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example Output -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="bg-green-600 px-6 py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-file-export text-white text-xl mr-3"></i>
+                    <h2 class="text-xl font-semibold text-white">示例输出</h2>
+                </div>
+            </div>
+            <div class="p-6">
+                <p class="text-slate-700 mb-4">如果当前新加坡时间是 <strong>2025年4月5日 14:30:45</strong>，生成的日志文件名为：</p>
+                
+                <div class="bg-slate-100 p-4 rounded-lg border border-slate-200">
+                    <code class="text-slate-800 font-mono">ss-inference-20250405-143045.log</code>
+                </div>
+                
+                <p class="text-slate-700 mt-4">该文件将创建在当前目录(或指定目录)中，包含容器的所有标准输出和标准错误日志。</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-12 pt-6 border-t border-slate-200 text-center text-slate-500 text-sm">
+            <p>网页由问小白生成，仅供参考</p>
+            <p class="mt-1">最后更新时间为2025-05-19，星期一</p>
+            <p class="mt-1"><a href="https://wenxiaobai.com" class="text-blue-500 hover:text-blue-700">wenxiaobai.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Copy to clipboard function
+        function copyToClipboard(button, elementId) {
+            const codeElement = document.getElementById(elementId);
+            const range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    const originalText = button.innerHTML;
+                    button.innerHTML = '<i class="fas fa-check mr-1"></i> 已复制';
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error('复制失败:', err);
+            }
+            
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</body>
+</html>

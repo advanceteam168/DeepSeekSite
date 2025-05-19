@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树莓派4 Ubuntu版本选择指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .version-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        <!-- 标题部分 -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">树莓派4 Ubuntu版本选择指南</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">根据官方推荐和兼容性测试，为您提供最优选择方案</p>
+        </div>
+
+        <!-- 官方推荐版本 -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-star text-yellow-500 mr-3"></i>官方推荐版本
+            </h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- LTS版本 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card relative">
+                    <div class="version-badge bg-blue-600 text-white px-3 py-1 rounded-full">LTS</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Ubuntu 24.04.2 LTS</h3>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>支持至2029年4月</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                <span>5年免费支持，扩展可达12年</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-microchip text-blue-500 mt-1 mr-2"></i>
+                                <span>需至少4GB RAM和16GB存储</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-industry text-purple-500 mt-1 mr-2"></i>
+                                <span>适合生产环境和工业应用</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <span class="text-sm font-medium text-gray-500">下载大小:</span>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">桌面版 2.6GB</span>
+                                <span class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full">服务器版 1.1GB</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 开发版 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card relative">
+                    <div class="version-badge bg-purple-600 text-white px-3 py-1 rounded-full">开发版</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Ubuntu 25.04</h3>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>支持至2026年1月</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-flask text-purple-500 mt-1 mr-2"></i>
+                                <span>包含最新功能和技术</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-microchip text-blue-500 mt-1 mr-2"></i>
+                                <span>资源需求同24.04.2 LTS</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-code text-orange-500 mt-1 mr-2"></i>
+                                <span>适合开发者测试新功能</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <span class="text-sm font-medium text-gray-500">适用场景:</span>
+                            <div class="mt-2">
+                                <span class="text-sm bg-purple-100 text-purple-800 px-3 py-1 rounded-full">短期项目</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 物联网版 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden card relative">
+                    <div class="version-badge bg-green-600 text-white px-3 py-1 rounded-full">物联网</div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Ubuntu Core 24</h3>
+                        <div class="flex items-center text-sm text-gray-500 mb-4">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            <span>支持至2036年</span>
+                        </div>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-bolt text-yellow-500 mt-1 mr-2"></i>
+                                <span>基于Snap的轻量级系统</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-shield-alt text-green-500 mt-1 mr-2"></i>
+                                <span>严格的安全隔离机制</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-robot text-blue-500 mt-1 mr-2"></i>
+                                <span>支持自动化维护</span>
+                            </li>
+                        </ul>
+                        <div class="mt-6 pt-4 border-t border-gray-100">
+                            <span class="text-sm font-medium text-gray-500">最佳应用:</span>
+                            <div class="mt-2">
+                                <span class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full">边缘计算</span>
+                                <span class="text-sm bg-green-100 text-green-800 px-3 py-1 rounded-full ml-2">嵌入式系统</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 认证与兼容性 -->
+        <div class="mb-16 bg-white rounded-xl shadow-md overflow-hidden p-6 card">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-3"></i>认证与兼容性
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">硬件认证</h3>
+                    <div class="flex items-start mb-4">
+                        <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                        <div>
+                            <p class="text-gray-700">Raspberry Pi 4 Model B (4GB/8GB) 已通过Ubuntu 22.04 LTS认证</p>
+                            <p class="text-sm text-gray-500 mt-1">最新版本(24.04.2 LTS及25.04)同样支持且功能更完善</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-800 mb-2">推荐配置</h4>
+                        <p class="text-sm text-blue-700">64位处理器使用64位镜像以获得最佳性能</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">架构支持</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center">
+                                <i class="fas fa-microchip text-blue-500 mr-2"></i>
+                                <span class="font-medium">Raspberry Pi 4</span>
+                            </div>
+                            <p class="text-sm text-gray-600 ml-6">64位镜像</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center">
+                                <i class="fas fa-microchip text-gray-500 mr-2"></i>
+                                <span class="font-medium">Raspberry Pi 2/Zero 2 W</span>
+                            </div>
+                            <p class="text-sm text-gray-600 ml-6">32位镜像</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 安装指南 -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-download text-blue-500 mr-3"></i>安装指南
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 步骤1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 card">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">准备工具</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <i class="fas fa-terminal text-gray-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="text-gray-700 font-medium">使用Raspberry Pi Imager工具</p>
+                                <div class="bg-gray-800 text-green-400 p-3 rounded-md mt-2 overflow-x-auto">
+                                    <code class="text-sm">sudo snap install rpi-imager</code>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <i class="fas fa-compact-disc text-purple-500 mt-1 mr-3"></i>
+                            <div>
+                                <p class="text-gray-700">选择Ubuntu镜像</p>
+                                <p class="text-sm text-gray-500 mt-1">在Imager的"Other general-purpose OS"选项中选择所需版本</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 步骤2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 card">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 text-blue-800 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-800">配置优化</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <i class="fas fa-tachometer-alt text-orange-500 mr-2"></i>
+                                <span class="font-medium">性能优化</span>
+                            </div>
+                            <ul class="text-sm text-gray-700 space-y-1 ml-6">
+                                <li>• 启用Zram替代Zswap提升内存效率</li>
+                                <li>• 超频需散热风扇(调整config.txt参数)</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center mb-1">
+                                <i class="fas fa-hdd text-blue-500 mr-2"></i>
+                                <span class="font-medium">文件系统转换</span>
+                            </div>
+                            <p class="text-sm text-gray-700 ml-6">将EXT4转换为BTRFS以减少SD卡读写压力</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 版本选择建议 -->
+        <div class="mb-16">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-clipboard-list text-purple-500 mr-3"></i>版本选择建议
+            </h2>
+            
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">需求</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">推荐版本</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">理由</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">长期稳定支持</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-medium">Ubuntu 24.04.2 LTS</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">官方认证，企业级可靠性，适合生产环境</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">最新技术尝鲜</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-purple-600 font-medium">Ubuntu 25.04</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">包含最新功能，适合开发者测试</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">物联网/嵌入式设备</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600 font-medium">Ubuntu Core 24</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">安全性高，支持OTA更新，适用于大规模部署</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">远程服务器/轻量级应用</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 font-medium">Ubuntu Server 24.04.2 LTS</td>
+                                <td class="px-6 py-4 text-sm text-gray-500">无图形界面，资源占用低，可自定义安装桌面环境</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注意事项 -->
+        <div class="bg-white rounded-xl shadow-md overflow-hidden p-6 card">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-exclamation-triangle text-yellow-500 mr-3"></i>注意事项
+            </h2>
+            
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="bg-yellow-100 text-yellow-800 p-2 rounded-full mr-4">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-1">镜像来源</h3>
+                        <p class="text-gray-700 text-sm">优先从<a href="https://ubuntu.com/download/raspberry-pi" class="text-blue-600 hover:underline ml-1">Ubuntu官方下载页</a>获取镜像，确保安全性和兼容性</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="bg-blue-100 text-blue-800 p-2 rounded-full mr-4">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-1">网络配置</h3>
+                        <p class="text-gray-700 text-sm">远程访问需启用SSH服务或手动配置WiFi/WiFi DNS(如Google DNS 8.8.8.8)</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="bg-red-100 text-red-800 p-2 rounded-full mr-4">
+                        <i class="fas fa-sd-card"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-800 mb-1">存储卡要求</h3>
+                        <p class="text-gray-700 text-sm">建议使用16GB以上高速SD卡，避免因存储性能影响系统稳定性</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="mt-12 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+            <p>网页由问小白生成，仅供参考</p>
+            <p class="mt-1">最后更新时间为2025-05-17，星期六</p>
+            <p class="mt-1"><a href="https://wenxiaobai.com" class="text-blue-600 hover:underline">wenxiaobai.com</a></p>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 卡片悬停效果增强
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 15px 30px -5px rgba(0, 0, 0, 0.1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+                card.style.boxShadow = '';
+            });
+        });
+    </script>
+</body>
+</html>
