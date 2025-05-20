@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.NET SDK 安装问题解决方案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fafb;
+        }
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="max-w-4xl mx-auto px-4 py-8">
+    <header class="mb-12 text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">.NET SDK 安装问题解决方案</h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">当执行 <code class="bg-gray-100 px-2 py-1 rounded">dotnet --list-sdks</code> 提示 <code class="bg-gray-100 px-2 py-1 rounded">Command 'dotnet' not found</code> 时的完整排查指南</p>
+    </header>
+
+    <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+        <div class="p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                <i class="fas fa-exclamation-triangle text-yellow-500 mr-3"></i> 问题概述
+            </h2>
+            <p class="text-gray-700 mb-4">系统提示 <code class="bg-gray-100 px-2 py-1 rounded">Command 'dotnet' not found</code>，表明系统中未正确安装或配置 .NET SDK。以下是详细的排查和解决方案。</p>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <!-- 步骤1 -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-start">
+                    <div class="step-number bg-blue-500 text-white mr-4">1</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">确认是否已正确安装 .NET SDK</h3>
+                        <p class="text-gray-700 mb-4">Ubuntu 上需要安装 <code class="bg-gray-100 px-2 py-1 rounded">dotnet-sdk-8.0</code> 包，而不是仅提供运行时环境的 <code class="bg-gray-100 px-2 py-1 rounded">dotnet-host-8.0</code>。</p>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white overflow-x-auto">
+                            <code class="text-sm">
+                                sudo apt-get update<br>
+                                sudo apt-get install -y dotnet-sdk-8.0
+                            </code>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">安装完成后，执行 <code class="bg-gray-100 px-2 py-1 rounded text-sm">dotnet --list-sdks</code> 检查输出。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 步骤2 -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-start">
+                    <div class="step-number bg-purple-500 text-white mr-4">2</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">检查是否添加了 Microsoft 包源</h3>
+                        <p class="text-gray-700 mb-4">自 2024 年起，Microsoft 包存储库不再包含适用于 Ubuntu 的 .NET 包，默认需使用 Ubuntu 源安装。如需特定版本或手动安装，需确保已添加 Microsoft 包源。</p>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white overflow-x-auto">
+                            <code class="text-sm">
+                                wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb<br>
+                                sudo dpkg -i packages-microsoft-prod.deb<br>
+                                sudo apt-get update
+                            </code>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">然后重新尝试安装 <code class="bg-gray-100 px-2 py-1 rounded text-sm">dotnet-sdk-8.0</code>。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 步骤3 -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-start">
+                    <div class="step-number bg-green-500 text-white mr-4">3</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">验证依赖项是否安装完整</h3>
+                        <p class="text-gray-700 mb-4">手动安装或发布自包含应用时，需确保依赖库已安装。缺失依赖可能导致安装后命令失效。</p>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white overflow-x-auto">
+                            <code class="text-sm">
+                                sudo apt-get install -y ca-certificates libc6 libgcc-s1 libicu74 liblttng-ust1 libssl3 libstdc++6 libunwind8 zlib1g
+                            </code>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">若应用使用 <code class="bg-gray-100 px-2 py-1 rounded text-sm">System.Drawing.Common</code>，还需安装 <code class="bg-gray-100 px-2 py-1 rounded text-sm">libgdiplus</code>。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 步骤4 -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-start">
+                    <div class="step-number bg-yellow-500 text-white mr-4">4</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">检查环境变量与安装路径</h3>
+                        <p class="text-gray-700 mb-4">如果通过手动安装（如解压 tar.gz 文件），需确保 <code class="bg-gray-100 px-2 py-1 rounded">dotnet</code> 可执行文件路径已加入环境变量 <code class="bg-gray-100 px-2 py-1 rounded">PATH</code>，且设置了 <code class="bg-gray-100 px-2 py-1 rounded">DOTNET_ROOT</code>。</p>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white overflow-x-auto">
+                            <code class="text-sm">
+                                export DOTNET_ROOT=/usr/lib/dotnet<br>
+                                export PATH=$PATH:/usr/lib/dotnet
+                            </code>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">编辑 <code class="bg-gray-100 px-2 py-1 rounded text-sm">/etc/profile</code> 或 <code class="bg-gray-100 px-2 py-1 rounded text-sm">~/.bashrc</code> 后，执行 <code class="bg-gray-100 px-2 py-1 rounded text-sm">source ~/.bashrc</code> 刷新配置。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 步骤5 -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-start">
+                    <div class="step-number bg-red-500 text-white mr-4">5</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">验证安装是否成功</h3>
+                        <p class="text-gray-700 mb-4">安装完成后，运行以下命令检查版本信息：</p>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white overflow-x-auto">
+                            <code class="text-sm">
+                                dotnet --info
+                            </code>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">成功输出应包含 <code class="bg-gray-100 px-2 py-1 rounded text-sm">.NET 8.0.x</code> 的 SDK 和运行时版本。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 步骤6 -->
+        <div class="card bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="p-6">
+                <div class="flex items-start">
+                    <div class="step-number bg-indigo-500 text-white mr-4">6</div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">若仍失败，尝试手动安装</h3>
+                        <p class="text-gray-700 mb-4">若包管理器安装失败，可手动下载 .NET 8 SDK 并配置：</p>
+                        <div class="bg-gray-800 rounded-lg p-4 text-white overflow-x-auto">
+                            <code class="text-sm">
+                                wget https://download.visualstudio.microsoft.com/download/pr/.../dotnet-sdk-8.0.100-linux-x64.tar.gz<br>
+                                mkdir -p /usr/lib/dotnet<br>
+                                tar zxf dotnet-sdk-8.0.100-linux-x64.tar.gz -C /usr/lib/dotnet
+                            </code>
+                        </div>
+                        <p class="text-gray-600 mt-3 text-sm">然后重复步骤4配置环境变量。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 总结表格 -->
+    <div class="mt-12 bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                <i class="fas fa-clipboard-check text-blue-500 mr-3"></i> 问题总结与解决方案对照表
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">问题原因</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">解决方案</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">未安装 SDK 包</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">安装 <code class="bg-gray-100 px-2 py-1 rounded">dotnet-sdk-8.0</code></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">缺失 Microsoft 包源</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">添加 Microsoft 源</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">依赖项缺失</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">安装依赖库</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">环境变量未配置</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">设置 <code class="bg-gray-100 px-2 py-1 rounded">PATH</code> 和 <code class="bg-gray-100 px-2 py-1 rounded">DOTNET_ROOT</code></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">包管理器安装失败</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">手动下载并安装</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-12 bg-blue-50 rounded-xl p-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+            <i class="fas fa-question-circle text-blue-500 mr-3"></i> 进一步帮助
+        </h2>
+        <p class="text-gray-700">完成上述步骤后，若问题仍未解决，请提供以下信息以便进一步排查：</p>
+        <div class="mt-3 space-y-2">
+            <div class="flex items-center">
+                <i class="fas fa-terminal text-gray-500 mr-2"></i>
+                <code class="bg-gray-100 px-2 py-1 rounded text-sm">dotnet --info</code>
+            </div>
+            <div class="flex items-center">
+                <i class="fas fa-terminal text-gray-500 mr-2"></i>
+                <code class="bg-gray-100 px-2 py-1 rounded text-sm">which dotnet</code>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-12 pt-6 border-t border-gray-200 text-center text-sm text-gray-500">
+        <p>网页由问小白生成，仅供参考</p>
+        <p class="mt-1">最后更新时间为2025-05-20 ，星期二</p>
+        <p class="mt-1">问小白网址：<a href="https://wenxiaobai.com" class="text-blue-500 hover:text-blue-600">wenxiaobai.com</a></p>
+    </footer>
+
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
